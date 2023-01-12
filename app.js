@@ -51,7 +51,7 @@ app.set("view engine", "ejs");
 // database connection
 
 mongoose
-  .connect(process.env.DEVELOPMENT_MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+  .connect(process.env.PRODUCTION_MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then((result) => {
     app.listen(3000, () => {
       const { name, host } = result.connections[0];
