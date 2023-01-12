@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <link rel="Icon" href="img/icare-logo.png" />
+
+    <!-- import poppins font -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+    </style>
+
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
+
+    <!-- bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+
+    <!-- css link -->
+    <link rel="stylesheet" href="style/signui.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <a href="/">
+            <img src="img/logo.png" class="logo-img" />
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 offset-md-1">
+          <div class="row">
+            <div class="col">
+              <a href="" class="link-google">
+                <div class="google-login"><i class="bi bi-google"></i>Login With Google</div></a
+              >
+            </div>
+          </div>
+          <div class="row">
+            <div class="col login-with">
+              <h2><span>OR LOGIN WITH</span></h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <form>
+                <input type="number" placeholder="Your Mobile Phone" name="number" id="number" />
+                <div class="number error"></div>
+                <input type="password" placeholder="Your Password" name="password" id="password" />
+                <div class="password error"></div>
+                <div class="row">
+                  <div class="col-md-12 checkboxes">
+                    <input type="checkbox" class="admin" />
+                    <p>Admin</p>
+                  </div>
+                </div>
+                <button type="submit" class="btn-login">Login</button>
+              </form>
+            </div>
+          </div>
+          <div class="row form-link-footer">
+            <div class="col-md-12 col-link-footer">
+              <a href="">Forgot Password</a>
+              <a href="/signup">Don't have account</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 img-dvector">
+          <img src="img/developervector1.png" class="illustrate" />
+        </div>
+      </div>
+    </div>
+
+    <!-- bootstrap jquery cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+<script>
+  const form = document.querySelector("form");
+
+  const numberError = document.querySelector(".number.error");
+  const passwordError = document.querySelector(".password.error");
+  const adminCheck = document.querySelector(".admin");
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const isAdminChecked = adminCheck.checked;
+
+    numberError.textContent = "";
+    passwordError.textContent = "";
+
+    const number = form.number.value;
+    const password = form.password.value;
+
+    try {
+      if (!isAdminChecked) {
+        const res = await fetch("/login", {
+          method: "POST",
+          body: JSON.stringify({ number, password }),
+          headers: { "Content-Type": "application/json" },
+        });
+
+        const data = await res.json();
+
+        if (data.errors) {
+          numberError.textContent = data.errors.number;
+          passwordError.textContent = data.errors.password;
+        }
+
+        if (data.user) {
+          // console.log(data);
+          location.assign("/dashboard");
+        }
+      } else {
+        const res = await fetch("/login-admin", {
+          method: "POST",
+          body: JSON.stringify({ number, password, isAdminChecked }),
+          headers: { "Content-Type": "application/json" },
+        });
+
+        const data = await res.json();
+
+        if (data.errors) {
+          numberError.textContent = data.errors.number;
+          passwordError.textContent = data.errors.password || data.errors.admin;
+        }
+
+        if (data.admin) {
+          location.assign("/dashboard-admin");
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  });
+</script>

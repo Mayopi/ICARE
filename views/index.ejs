@@ -1,0 +1,424 @@
+<%- include('./layouts/main') %>
+
+<div class="home-crossection"></div>
+
+<section class="modal-container">
+  <!-- Modal -->
+  <div class="modal fade" id="diagnosticQuizz" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalLabel"><img src="img/diagnosticquizzLogo.png" alt="" /> Diagnostic Quizz</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Diagnose Quizz is a Feature from our application, ICARE. Where Users can answer several question to get an light diagnosis. Please take a note that this feature only carry barely minimum Probabilty for minor eyes problem.
+            <strong>DO NOT</strong>
+            use / explicit this feature for Deep Diagnosing other people or yourself. We <code>Recommended</code> to have eye health problems examined further by a professional expert
+          </p>
+        </div>
+        <div class="modal-footer">
+          <a href="/service">
+            <button type="button" class="modal-buttons">Try Feature</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="consultation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalLabel"><img src="img/consultationLogo.png" alt="" /> Consultation</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Get in touch with professional eye doctors in a easy way</p>
+        </div>
+        <div class="modal-footer">
+          <a href="/service">
+            <button type="button" class="modal-buttons" href="">Try Feature</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="colorBlindTest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalLabel"><img src="img/colorblindtestLogo.png" alt="" /> Color Blind Test</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Take a few minutes to choose an answer for Color Blindness test and grab your result!</p>
+        </div>
+        <div class="modal-footer">
+          <a href="/service">
+            <button type="button" class="modal-buttons" href="">Try Feature</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="landingPageForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Response</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h4 class="modal-response-form">Message Successfully Sended!</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home">
+  <div class="container">
+    <div class="row">
+      <div class="col heading">
+        <h2>
+          Treat your <span>Eyes</span> like <br />
+          it's your <span>Child</span>
+        </h2>
+        <div class="underline"></div>
+      </div>
+      <div class="col">
+        <div class="container data-landing-page">
+          <div class="user-registered">
+            <h1><%= totalUser %></h1>
+            <p>Times User has Registered</p>
+          </div>
+
+          <div class="generated-certificate">
+            <h1><%- certificate %></h1>
+            <p>Times Certificate was presented</p>
+          </div>
+
+          <div class="test-taken">
+            <h1><%- testTaken %></h1>
+            <p>Times Eyes Test was Taken</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row row-para">
+      <div class="col paragraph">
+        <h5><%= funfact %></h5>
+        <p>
+          Introducing ICARE, Interested with us? <br />
+          <a href="#">&laquo; Learn More</a>
+        </p>
+      </div>
+    </div>
+    <div class="row row-btn">
+      <div class="col">
+        <a href="/signUp"><button class="btn-signup">Sign Up</button></a>
+        <a href="/login"><button class="btn-login">Login</button></a>
+      </div>
+    </div>
+    <img src="img/illustrate.png" class="illustrate" />
+  </div>
+</section>
+
+<section class="service" id="service">
+  <div class="container">
+    <div class="row header-service">
+      <div class="col">
+        <h2>How can we Contribute ?</h2>
+        <h5>Our Service in one Apps</h5>
+      </div>
+    </div>
+    <div class="row title-service">
+      <div class="col-sm-12">
+        <p>Service</p>
+      </div>
+    </div>
+    <div class="row content-service">
+      <div class="col-sm-6">
+        <button data-bs-toggle="modal" data-bs-target="#diagnosticQuizz">
+          <div>
+            <img src="img/diagnosticquizzLogo.png" alt="" />
+            Visual Eye Test
+          </div>
+        </button>
+      </div>
+      <div class="col-sm-6">
+        <button>
+          <div data-bs-toggle="modal" data-bs-target="#colorBlindTest">
+            <img src="img/colorblindtestLogo.png" alt="" />
+            Color Blind Test
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="crossection"></div>
+
+<section class="about" id="about">
+  <div class="container">
+    <div class="row header-about">
+      <div class="col">
+        <h1>What and Why ICARE ?</h1>
+      </div>
+    </div>
+    <div class="row image-about-header">
+      <div class="col">
+        <img src="img/imageaboutheader.png" />
+      </div>
+    </div>
+    <div class="row content-about">
+      <div class="col-sm-6">
+        <div class="col content-filled">
+          <h2>What is ICARE ?</h2>
+          <p>ICARE is an Online Application Services that provide on serving eye health and problems in this modernization era.</p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <img src="img/aboutimage1.png" />
+      </div>
+    </div>
+    <div class="row content-about reversed">
+      <div class="col-sm-6">
+        <img src="img/aboutimage2.png" />
+      </div>
+      <div class="col-sm-6">
+        <div class="col content-filled">
+          <h2>Why We Exist ?</h2>
+          <p>Our mission is to make a step for people to recognize that the World is far beautiful when seen Clearly</p>
+        </div>
+      </div>
+    </div>
+    <div class="row content-about">
+      <div class="col-sm-6">
+        <div class="col content-filled">
+          <h2>Why Us ?</h2>
+          <p>
+            We are created for any generation including Millennials and Historical one with a touch of friendly design. we bring ICARE with its rich features for the purpose of advancing, and facilitating the welfare of human civilization
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <img src="img/aboutimage3.png" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="crossection"></div>
+
+<section class="FAQ" id="FAQ">
+  <div class="container">
+    <div class="row header-FAQ">
+      <div class="col">
+        <h1>Frequently Asked Question</h1>
+      </div>
+    </div>
+    <div class="row accordion-content">
+      <div class="col">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                <h4 class="accordion-title">What Tech do ICARE use ?</h4>
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">
+                <div class="accordion-text">
+                  ICARE is Developed by Two of our team. For the technology We are using <code>Javascript</code> Programming Languange with their Fullstack Framework <code>NodeJs</code> and <code>ExpressJs</code> while in the other hand,
+                  specifically for Our databases management, We are currently using <code>MongoDB</code> for our Data Storage.
+                </div>
+                <div class="accordion-feedback">
+                  <p>Did this question help ?</p>
+                  <button class="accordion-feedback-yes">Yes</button>
+                  <button class="accordion-feedback-no">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                <h4 class="accordion-title">What Feature Does ICARE Have ?</h4>
+              </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">
+                <div class="accordion-text">
+                  ICARE is Developed by Two of our team. For the technology We are using <code>Javascript</code> Programming Languange with their Fullstack Framework <code>NodeJs</code> and <code>ExpressJs</code> while in the other hand,
+                  specifically for Our databases management, We are currently using <code>MongoDB</code> for our Data Storage.
+                </div>
+                <div class="accordion-feedback">
+                  <p>Did this question help ?</p>
+                  <button class="accordion-feedback-yes">Yes</button>
+                  <button class="accordion-feedback-no">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                <h4 class="accordion-title">How To Use ICARE Properly ?</h4>
+              </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">
+                <div class="accordion-text">
+                  ICARE is Developed by Two of our team. For the technology We are using <code>Javascript</code> Programming Languange with their Fullstack Framework <code>NodeJs</code> and <code>ExpressJs</code> while in the other hand,
+                  specifically for Our databases management, We are currently using <code>MongoDB</code> for our Data Storage.
+                </div>
+                <div class="accordion-feedback">
+                  <p>Did this question help ?</p>
+                  <button class="accordion-feedback-yes">Yes</button>
+                  <button class="accordion-feedback-no">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="crossection"></div>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1 class="text-contact">Say Hello To Us</h1>
+        <p class="text-contact">Fill up the Form and Our Team will reach you out within 24 Hours!</p>
+        <div class="email-icon">
+          <i class="bi bi-envelope-fill"></i>
+          <p>contactus@icareofc.com</p>
+        </div>
+        <div class="instagram-icon">
+          <i class="bi bi-instagram"></i>
+          <p>@icareofficial</p>
+        </div>
+        <div class="twitter-icon">
+          <i class="bi bi-twitter"></i>
+          <p>@icareofficial</p>
+        </div>
+
+        <div class="telephone-icon">
+          <i class="bi bi-telephone-fill"></i>
+          <p>+62 876-555-555</p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-container">
+          <div class="form-content">
+            <form action="" name="icare-contact-form">
+              <label for="name" class="label-name">Your Name</label>
+              <input type="text" id="name" class="form-name" name="name" required />
+              <label for="email" class="label-email">Your Email</label>
+              <input type="email" id="email" name="email" class="form-email" required />
+              <label for="message" class="label-message">Message</label>
+              <textarea name="message" id="message" cols="30" rows="10" class="form-message" required></textarea>
+              <div class="submit-message-container">
+                <button type="submit" class="submit-message" data-bs-toggle="modal" data-bs-target="#landingPageForm">Send Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="background-bridge"></div>
+
+<section class="footer">
+  <div class="container">
+    <div class="row row-footer">
+      <div class="col">
+        <h3>Meet Us</h3>
+      </div>
+      <div class="col">
+        <h3>Follow Us</h3>
+      </div>
+      <div class="col">
+        <h3>Company</h3>
+      </div>
+    </div>
+    <div class="row row-footer">
+      <div class="col">
+        <p>St. Waru IV Housing Area Graha Tanjung Elok No.25, Bojong Tanjung, Kec. Purwokerto Sel Banyumas Regency, Central Java 53144</p>
+      </div>
+      <div class="col">
+        <a href=""><i class="bi bi-instagram"></i></a>
+        <a href=""><i class="bi bi-twitter"></i></a>
+      </div>
+      <div class="col">
+        <h5>Owla</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col offset-4">
+        <h3>Technology</h3>
+        <div class="col carousel-tech">
+          <div id="carouselExampleSlidesOnly" class="carousel-fade slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="3000">
+                <img src="img/custom/logos_bootstrap.png" class="d-block w-40" />
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <img src="img/custom/logos_javascript.png" class="d-block w-40" />
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <img src="img/custom/logos_nodejs-icon.png" class="d-block w-40" />
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <img src="img/custom/logos_npm-icon.png" class="d-block w-40" />
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <img src="img/custom/vscode-icons_file-type-ejs.png" class="d-block w-40" />
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <img src="img/custom/vscode-icons_file-type-mongo.png" class="d-block w-40" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>Ⓒ 2022 Owla, All Right Reserved.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Google sheets form contact -->
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyYcKjlnscUJECaGKQ5ibiS7iWpZ1qOUDtrOdwrdBnf600G4TzMEiVWF17Nt-61npJO/exec";
+  const form = document.forms["icare-contact-form"];
+  const h4Response = document.querySelector(".modal-response-form");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    fetch(scriptURL, { method: "POST", body: new FormData(form) })
+      .then((response) => {
+        console.log("Success!", response);
+      })
+      .catch((error) => {
+        console.log({ errors: error });
+      });
+  });
+</script>
+
+<script src="javascript/index.js"></script>

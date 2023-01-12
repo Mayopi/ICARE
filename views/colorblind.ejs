@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+
+    <link rel="Icon" href="img/icare-logo.png" />
+
+    <!-- css link -->
+    <link rel="stylesheet" href="style/color-blind.css" />
+
+    <!-- Bootstrap Icon CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
+  </head>
+  <body>
+    <%- include('./layouts/dashboardnav') %>
+
+    <div class="area">
+      <div class="container-fluid">
+        <div class="container color-blind-content">
+          <div class="row header">
+            <div class="col-sm-6 text">
+              <h1>What Is Color Blindness?</h1>
+            </div>
+            <div class="col-sm-6 image">
+              <img src="img/color-blind-illustration.png" />
+            </div>
+          </div>
+          <div class="row header-explanation">
+            <div class="col-sm-12">
+              <h5>
+                Color (American English) or colour (British English) is the visual perceptual property deriving from the spectrum of light interacting with the photoreceptor cells of the eyes. Color categories and physical specifications of
+                color are associated with objects or materials based on their physical properties such as light absorption, reflection, or emission spectra. By defining a color space, colors can be identified numerically by their
+                coordinates.
+              </h5>
+              <div class="accordion">
+                <div class="accordion-item">
+                  <div class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <h3>So What Is Color Blindness?</h3>
+                    </button>
+                  </div>
+                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p>
+                        Color blindness (color vision deficiency) is the decreased ability to see color or differences in color. It can impair tasks such as selecting ripe fruit, choosing clothing, and reading traffic lights. Color
+                        blindness may make some academic activities more difficult. However, issues are generally minor, and the colorblind automatically develop adaptations and coping mechanisms. People with total color blindness
+                        (achromatopsia) may also be uncomfortable in bright environments and have decreased visual acuity.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <div class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                      <h3>What Causes Color Blindness?</h3>
+                    </button>
+                  </div>
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p>
+                        Usually, genes inherited from your parents cause faulty photopigments -- molecules that detect color in the cone-shaped cells, or “cones,” in your retina. But sometimes color blindness is not because of your genes,
+                        but rather because of:
+                      </p>
+                      <ul>
+                        <li>Physical or chemical damage to the eye</li>
+                        <li>Damage the optic Nerve</li>
+                        <li>Damage to parts of the brain that process color information</li>
+                        <li>Cataract -- a clouding of the eye's lens</li>
+                        <li>Ages</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a href="#color-blind-test" class="take-test-btn">
+                <div>Take Test</div>
+              </a>
+            </div>
+          </div>
+          <div class="row color-blind-test hidden" id="color-blind-test">
+            <div class="col-sm-3">
+              <div class="test-card">
+                <img src="img/imgTest/colorblind-test-img1.webp" alt="" />
+                <input type="number" class="color-blind-input input-1" placeholder="Your Answer" onchange="validateColorBlind()" />
+                <div class="answer-box box-1 hidden"></div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="test-card">
+                <img src="img/imgTest/colorblind-test-img2.webp" alt="" />
+                <input type="number" class="color-blind-input input-2" placeholder="Your Answer" onchange="validateColorBlind()" />
+                <div class="answer-box box-2 hidden"></div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="test-card">
+                <img src="img/imgTest/colorblind-test-img3.webp" alt="" />
+                <input type="number" class="color-blind-input input-3" placeholder="Your Answer" onchange="validateColorBlind()" />
+                <div class="answer-box box-3 hidden"></div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="test-card">
+                <img src="img/imgTest/colorblind-test-img4.webp" alt="" />
+                <input type="number" class="color-blind-input input-4" placeholder="Your Answer" onchange="validateColorBlind()" />
+                <div class="answer-box box-4 hidden"></div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="test-card">
+                <img src="img/imgTest/colorblind-test-img5.webp" alt="" />
+                <input type="number" class="color-blind-input input-5" placeholder="Your Answer" onchange="validateColorBlind()" />
+                <div class="answer-box box-5 hidden"></div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="test-card">
+                <img src="img/imgTest/colorblind-test-img6.webp" alt="" />
+                <input type="number" class="color-blind-input input-6" placeholder="Your Answer" onchange="validateColorBlind()" />
+                <div class="answer-box box-6 hidden"></div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="test-card">
+                <img src="img/imgTest/colorblind-test-img7.webp" alt="" />
+                <input type="number" class="color-blind-input input-7" placeholder="Your Answer" onchange="validateColorBlind()" />
+                <div class="answer-box box-7 hidden"></div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="test-card">
+                <img src="img/imgTest/colorblind-test-img8.webp" alt="" />
+                <input type="number" class="color-blind-input input-8" placeholder="Your Answer" onchange="validateColorBlind()" />
+                <div class="answer-box box-8 hidden"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row color-blind-result hidden">
+            <div class="col-sm-12 colorblind-type">
+              <h3 class="final-result"></h3>
+              <a href="/certificate-colorblindness">
+                <button class="btn btn-light">Download Result</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="javascript/color-blind.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+</html>

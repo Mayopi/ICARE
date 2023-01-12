@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-1: #eaeaea;
+  --color-2: #2a2550;
+  --color-3: #333;
+  --color-4: #34b3f1;
+  --montserrat: "Montserrat", sans-serif;
+}
+
+/* content */
+
+/* content header */
+
+.color-blind-content {
+  font-family: var(--montserrat);
+}
+
+.color-blind-content .header .col-sm-6 {
+  display: flex;
+}
+
+.color-blind-content .header .col-sm-6.text {
+  align-items: center;
+}
+
+.color-blind-content .header .col-sm-6.text h1 {
+  width: 50%;
+  font-size: 4em;
+  font-weight: bolder;
+  letter-spacing: 3px;
+}
+
+.color-blind-content .header .col-sm-6.image {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.color-blind-content .header .col-sm-6.col-sm-6.image img {
+  inline-size: 50%;
+}
+
+/* end of content header */
+
+/* content header explanation */
+
+.header-explanation .col-sm-12 {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.color-blind-content .header-explanation h3 {
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 1.5em;
+}
+
+.color-blind-content .header-explanation .col-sm-12 {
+  font-size: 1.3em;
+}
+
+.accordion-body p {
+  font-weight: 500;
+}
+
+.header-explanation .col-sm-12 a:nth-child(3) {
+  justify-self: center;
+  align-self: center;
+}
+
+.take-test-btn {
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3em;
+  background: var(--color-3);
+  color: var(--color-1);
+  width: 200px;
+  height: 60px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.take-test-btn:hover {
+  color: var(--color-4);
+}
+
+/* end of content header explanation */
+
+/* color blind test content */
+
+.color-blind-test {
+  margin-top: 100px;
+}
+
+.color-blind-test.hidden {
+  display: none;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.test-card {
+  padding: 20px;
+  width: 100%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.3em;
+  border-radius: 5px;
+  margin-top: 50px;
+  box-shadow: 0px 0px 15px var(--color-3);
+}
+
+.test-card input {
+  border: none;
+  background: var(--color-2);
+  color: var(--color-1);
+  border-radius: 5px;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.color-blind-input {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+}
+
+.color-blind-input.hidden {
+  display: none;
+}
+
+.answer-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  color: var(--color-1);
+  border-radius: 5px;
+  background: var(--color-3);
+}
+
+.answer-box.hidden {
+  display: none;
+}
+
+/* end of color blind test content */
+
+/* color blind result content */
+
+.color-blind-result {
+  margin-top: 100px;
+}
+
+.color-blind-result.hidden {
+  display: none;
+}
+
+.color-blind-result .col-sm-12 {
+  height: 200px;
+  background: var(--color-3);
+  border-radius: 10px;
+  color: var(--color-1);
+  padding: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.colorblind-type {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+/* end of color blind result content */
+
+/* end of content  */

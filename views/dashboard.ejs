@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+
+    <link rel="Icon" href="img/icare-logo.png" />
+
+    <!-- css link -->
+    <link rel="stylesheet" href="style/dashboard.css" />
+
+    <!-- Bootstrap Icon CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
+  </head>
+  <body>
+    <%- include('./layouts/dashboardnav') %> <%- include('./layouts/mobilenav') %>
+
+    <div class="area">
+      <div class="container-fluid">
+        <div class="row dashboard-header-content">
+          <div class="col-sm-4 header">
+            <div class="dashboard-header">
+              <h1>Dashboard</h1>
+              <button class="dashboard-navbar-toggle"><i class="bi bi-caret-right-fill" id="arrow"></i></button>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="dashboard-profile">
+              <div class="dropdown">
+                <button class="profile-picture" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="profile-picture">
+                    <img src="img/user-profile.jpg" />
+                  </div>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li class="p-3"><%= user.username %></li>
+                  <li><a class="dropdown-item" href="/profile-user/<%= user._id %>">Profile</a></li>
+                  <li>
+                    <a href="/profile-user/settings/<%= user._id %>" class="dropdown-item">Settings</a>
+                  </li>
+                  <hr />
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row dashboard-body-content">
+          <div class="col-sm-12">
+            <div class="dashboard-content">
+              <div class="row">
+                <a href="/color-blind-test">
+                  <div class="content-button">
+                    <button>
+                      <i class="bi bi-laptop"></i>
+                    </button>
+                    <p>Take Eyes Test</p>
+                  </div>
+                </a>
+                <a href="#">
+                  <div class="content-button">
+                    <button>
+                      <i class="bi bi-eyeglasses"></i>
+                    </button>
+                    <p>Solution</p>
+                  </div>
+                </a>
+              </div>
+              <div class="row">
+                <a href="/visual-eye-test">
+                  <div class="content-button">
+                    <button>
+                      <i class="bi bi-list-check"></i>
+                    </button>
+                    <p>Visual Eye Test</p>
+                  </div>
+                </a>
+                <a href="#">
+                  <div class="content-button">
+                    <button>
+                      <i class="bi bi-bandaid-fill"></i>
+                    </button>
+                    <p>Medicine</p>
+                  </div>
+                </a>
+              </div>
+              <div class="content-img">
+                <img src="img/svg/doctor.svg" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="javascript/dashboard.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+</html>

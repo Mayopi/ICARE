@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+
+    <link rel="Icon" href="img/icare-logo.png" />
+
+    <!-- css link -->
+    <link rel="stylesheet" href="style/service.css" />
+
+    <!-- Bootstrap Icon CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
+  </head>
+  <body>
+    <%- include('./layouts/dashboardnav') %>
+
+    <div class="area">
+      <div class="container-fluid">
+        <div class="row dashboard-header-content">
+          <div class="col-sm-4">
+            <div class="dashboard-header">
+              <h1>Service</h1>
+              <button class="dashboard-navbar-toggle"><i class="bi bi-caret-right-fill" id="arrow"></i></button>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="dashboard-place-holder">
+              <div class="container-place-holder">
+                <i class="bi bi-search"></i>
+                <input type="text" placeholder="Search" />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="dashboard-profile">
+              <button class="message-profile">
+                <div>
+                  <i class="bi bi-chat-left-text-fill"></i>
+                </div>
+              </button>
+              <button class="profile-picture">
+                <div class="profile-picture">
+                  <img src="img/user-profile.jpg" />
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid service-content">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="service-item diagnosal-quiz">
+              <div class="service-item-header">
+                <h3>Diagnosal Quiz</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus atque magni, officiis possimus esse ea rem quas placeat doloremque nisi nulla unde quidem beatae, nobis sunt totam neque similique! Quo.</p>
+              </div>
+              <div class="service-item-body">
+                <a href="">
+                  <img src="img/diagnosticquizzLogo.png" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="service-item color-blind-test">
+              <div class="service-item-header">
+                <h3>Color Blind Test</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit omnis numquam doloribus in ad sequi distinctio maxime. Dolorum veritatis pariatur ut quod! Itaque, vitae assumenda repellat earum hic eligendi excepturi?</p>
+              </div>
+              <div class="service-item-body">
+                <a href="/color-blind-test">
+                  <img src="img/colorblindtestLogo.png" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="service-item consultation">
+              <div class="service-item-header">
+                <h3>Consultation</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore at deleniti excepturi dolorem temporibus, quos veniam tempore delectus saepe modi nemo maiores, enim, quisquam sint rerum quod aspernatur libero sit.</p>
+              </div>
+              <div class="service-item-body">
+                <a href="">
+                  <img src="img/consultationLogo.png" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script/dashboard.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+</html>

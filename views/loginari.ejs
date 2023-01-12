@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background-color: #eaeaea;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      :root {
+        --main-color: #2a2550;
+        --second-color: #eaeaea;
+        --background-color: #251d3a;
+        --text-color: #333;
+        --additional-color: #34b3f1;
+      }
+
+      .container .img-dvector {
+        margin-top: -20%;
+      }
+
+      .row .col form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .row .col form input {
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 5px;
+        border: none;
+        margin-top: 10px;
+        padding: 5px;
+      }
+
+      .google-login {
+        font-weight: bold;
+        color: #333;
+        background: white;
+        width: 100%;
+        border-radius: 5px;
+        font-size: 20px;
+        padding: 5px;
+      }
+
+      .google-login i {
+        margin-right: 25%;
+      }
+
+      .link-google {
+        text-decoration: none;
+      }
+      .btn-login {
+        width: 100%;
+        color: white;
+        background-color: var(--background-color);
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 5px;
+        border: none;
+        padding: 5px;
+        transition: 0.4s;
+      }
+
+      .btn-login:hover {
+        color: var(--additional-color);
+      }
+
+      .login-with h2 {
+        width: 100%;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+        border-bottom: 1px solid #000;
+        line-height: 0.1em;
+        margin-top: 25px;
+      }
+      .login-with h2 span {
+        background: #eaeaea;
+        padding: 0 10px;
+      }
+      .container .row .col-md-12 a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+        transition: 0.4s;
+      }
+
+      .container .row .col-md-12 a:hover {
+        color: var(--additional-color);
+      }
+
+      .col-md-12.col-link-footer {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .col-md-12.checkboxes {
+        display: flex;
+      }
+
+      .col-md-12.checkboxes p {
+        margin-left: 10px;
+        font-weight: bold;
+        color: var(--text-color);
+        margin-top: 15px;
+      }
+
+      .logo-img {
+        margin-top: 20%;
+        width: 200px;
+      }
+
+      /* Responsive */
+
+      /* Responsive Tablet */
+
+      @media only screen and (max-width: 768px) {
+        .illustrate {
+          width: 500px;
+          position: absolute;
+          top: 0;
+          z-index: -1;
+          opacity: 0.25;
+        }
+      }
+
+      /* Responsive Mobile */
+
+      @media only screen and (max-width: 576px) {
+        body {
+          max-width: 100%;
+          overflow-x: hidden;
+        }
+
+        .illustrate {
+          width: 500px;
+          position: absolute;
+          top: 0;
+          z-index: -1;
+          opacity: 0.25;
+        }
+
+        .logo-img {
+          margin-left: 25%;
+          width: 119px;
+        }
+      }
+    </style>
+
+    <!-- bootstrap icon cdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <img src="img/logo.png" class="logo-img" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 offset-md-1">
+          <div class="row">
+            <div class="col">
+              <a href="" class="link-google">
+                <div class="google-login"><i class="bi bi-google"></i>Login With Google</div></a
+              >
+            </div>
+          </div>
+          <div class="row">
+            <div class="col login-with">
+              <h2><span>OR LOGIN WITH</span></h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <form>
+                <input type="number" placeholder="Your Mobile Phone" name="" id="" />
+                <input type="password" placeholder="Your Password" name="" id="" />
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 checkboxes">
+              <input type="checkbox" />
+              <p>Keep Me Loggin in</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <input type="button" class="btn-login" value="Login" />
+            </div>
+          </div>
+          <div class="row form-link-footer">
+            <div class="col-md-12 col-link-footer">
+              <a href="">Forgot Password</a>
+              <a href="">Don't have account</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 img-dvector">
+          <img src="img/developervector1.png" class="illustrate" />
+        </div>
+      </div>
+    </div>
+
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <!-- end bootstrap -->
+  </body>
+</html>

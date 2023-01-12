@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+
+    <!-- bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+
+    <link rel="Icon" href="img/icare-logo.png" />
+
+    <!-- css link -->
+    <link rel="stylesheet" href="style/dashboard-admin.css" />
+
+    <!-- Bootstrap Icon CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
+  </head>
+
+  <body>
+    <%- include('./layouts/dashboardnav-admin') %>
+
+    <div class="area">
+      <div class="container-fluid">
+        <div class="row dashboard-header-content">
+          <div class="col-sm-4">
+            <div class="dashboard-header">
+              <h1>Admin Dashboard</h1>
+              <button class="dashboard-navbar-toggle"><i class="bi bi-caret-right-fill" id="arrow"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container breadcrumb">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page">
+              <a href="/">Home</a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page">
+              <a href="/dashboard-admin">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Manage User</li>
+          </ol>
+        </nav>
+      </div>
+
+      <div class="container user-table">
+        <table>
+          <div class="search">
+            <form action="" class="search-user-form">
+              <label for="search-user">
+                <i class="bi bi-search"></i>
+              </label>
+              <input type="text" placeholder="Search User" class="search-user" id="search-user" name="search_user" />
+            </form>
+          </div>
+          <div class="search-error"></div>
+
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Username</th>
+              <th>Phone</th>
+              <th>Status</th>
+              <th>Last Sign In</th>
+              <th>Manage User</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% for( const data of user ) { %>
+            <tr class="data-user">
+              <th><%- data._id %></th>
+              <th><%- data.username%></th>
+              <th><%- data.number %></th>
+              <th>Active</th>
+              <th><% if (data.lastActive === today) { %> Today <% } else { %> <%- data.lastActive %> <% } %></th>
+              <th><a href="/manage-user/<%- data._id %>" class="btn-manage-user">Manage User</a></th>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+
+        <nav class="user-pagination">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="?page=<%- (currentPage - 1 === 0) ? totalPage:currentPage - 1 %>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <% for( let index = 1; index <= totalPage; index++ ) { %>
+            <li class="page-item <%- (currentPage == index) ? 'active':''%>"><a href="?page=<%= index %>" class="page-link"><%= index %></a></li>
+            <% } %>
+            <li class="page-item">
+              <a class="page-link" href="?page=<%- (++currentPage > totalPage) ? 1 : currentPage++ %>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <script src="javascript/manage-user.js"></script>
+  </body>
+</html>

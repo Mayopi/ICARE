@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-1: #eaeaea;
+  --color-2: #2a2550;
+  --color-3: #333;
+  --color-4: #34b3f1;
+  --color-5: #f86354;
+  --montserrat: "Montserrat", sans-serif;
+}
+
+body {
+  font-family: var(--montserrat);
+}
+
+.area {
+  margin-left: 60px;
+}
+
+/* header */
+
+.header .title h1 {
+  font-size: 5em;
+  color: var(--color-2);
+}
+
+.header .title span {
+  color: var(--color-4);
+}
+
+.header .image {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header .image img {
+  width: 500px;
+}
+
+/* end of header */
+
+/* disclaimer */
+
+main {
+  margin-top: 100px;
+}
+
+.disclaimer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.disclaimer h1 {
+  font-size: 4em;
+  color: var(--color-2);
+  text-align: center;
+}
+
+.disclaimer span {
+  color: var(--color-4);
+}
+
+.disclaimer-card {
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.disclaimer-card p {
+  font-size: 1.3em;
+}
+
+.disclaimer-card h2,
+.disclaimer-card span {
+  color: var(--color-5);
+}
+
+.disclaimer-checkbox {
+  width: 100%;
+}
+
+.disclaimer-checkbox input {
+  width: 20px;
+  height: 20px;
+}
+
+.start-test-btn {
+  padding: 10px;
+  width: 200px;
+  background: var(--color-2);
+  border: none;
+  border-radius: 5px;
+  color: var(--color-1);
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+/* end of disclaimer */
+
+/* guidelines */
+
+.guidelines {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+.guidelines-card {
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  padding: 20px;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2em;
+  height: 300px;
+}
+
+.guidelines-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.guidelines-item i {
+  font-size: 3em;
+}
+
+.guidelines-item p {
+  font-size: 1.5em;
+}
+
+.previous-btn button,
+.next-btn button {
+  border: none;
+}
+
+.previous-btn i,
+.next-btn i {
+  font-size: 3em;
+  cursor: pointer;
+}
+
+/* end of guidelines */
