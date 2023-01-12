@@ -66,44 +66,50 @@ mongoose
 app.get("*", checkUser);
 
 app.get("/", async (req, res) => {
-  const user = await User.find();
-  const data = await Data.find();
+  try {
+    const user = await User.find();
+    const data = await Data.find();
 
-  const certificate = (data) => {
-    data = String(data);
-    if (data > 999 && data < 1000000) {
-      return `${data[0]}K+`;
-    } else if (data > 999999 && data < 1000000000) {
-      return `${data[0]}M+`;
-    } else if (data > 999999999) {
-      return `${data[0]}B+`;
-    } else if (data > 999999999999 && data < 1000000000000) {
-      return `${data[0]}T+`;
+    if (data.length < 1) {
+      Data.create({ colorblindTest: 0, visualEyeTest: 0, amount: 0 });
     }
-    return data;
-  };
 
-  const testTaken = (colorblind, visualeyes) => {
-    const data = String(colorblind + visualeyes);
-    if (data > 999 && data < 1000000) {
-      return `${data[0]}K+`;
-    } else if (data > 999999 && data < 1000000000) {
-      return `${data[0]}M+`;
-    } else if (data > 999999999) {
-      return `${data[0]}B+`;
-    } else if (data > 999999999999 && data < 1000000000000) {
-      return `${data[0]}T+`;
-    }
-    return data;
-  };
+    const certificate = (data) => {
+      data = String(data);
+      if (data > 999 && data < 1000000) {
+        return `${data[0]}K+`;
+      } else if (data > 999999 && data < 1000000000) {
+        return `${data[0]}M+`;
+      } else if (data > 999999999) {
+        return `${data[0]}B+`;
+      } else if (data > 999999999999 && data < 1000000000000) {
+        return `${data[0]}T+`;
+      }
+      return data;
+    };
 
-  res.render("index", {
-    funfact: generateRandomFunfact(),
-    totalUser: user.length,
-    user,
-    certificate: certificate(data[0].certificateGenerated.amount),
-    testTaken: testTaken(data[0].colorblindTest.amount, data[0].visualEyeTest.amount),
-  });
+    const testTaken = (colorblind, visualeyes) => {
+      const data = String(colorblind + visualeyes);
+      if (data > 999 && data < 1000000) {
+        return `${data[0]}K+`;
+      } else if (data > 999999 && data < 1000000000) {
+        return `${data[0]}M+`;
+      } else if (data > 999999999) {
+        return `${data[0]}B+`;
+      } else if (data > 999999999999 && data < 1000000000000) {
+        return `${data[0]}T+`;
+      }
+      return data;
+    };
+
+    res.render("index", {
+      funfact: generateRandomFunfact(),
+      totalUser: user.length,
+      user,
+      certificate: certificate(data[0].certificateGenerated.amount),
+      testTaken: testTaken(data[0].colorblindTest.amount, data[0].visualEyeTest.amount),
+    });
+  } catch (error) {}
 });
 
 app.use(guestRoutes, authRoutes, adminRoutes);
