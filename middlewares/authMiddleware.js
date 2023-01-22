@@ -2,6 +2,7 @@ require("dotenv").config;
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const Admin = require("../models/Admin");
+const { GoogleUser } = require("../models/GoogleUser");
 
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
@@ -80,9 +81,21 @@ const checkIsAdmin = (req, res, next) => {
   }
 };
 
+const verifyJWTToken = (token) => {
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, process.env.JWT_SIGNATURE, async (err, decodedToken) => {
+      if (err) return reject(err);
+
+      let user = (await GoogleUser.findById(decodedToken.id)) ?? (await User.findById(decodedToken.id));
+      resolve(user);
+    });
+  });
+};
+
 module.exports = {
   requireAuth,
   requireAdmin,
   checkUser,
   checkIsAdmin,
+  verifyJWTToken,
 };

@@ -1,4 +1,9 @@
 const { Router } = require("express");
+const multer = require("multer");
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
 const authController = require("../controller/authController");
 const { requireAdmin, requireAuth } = require("../middlewares/authMiddleware");
 
@@ -14,6 +19,12 @@ router.get("/profile-user/settings/:id", requireAuth, authController.profile_use
 router.get("/visual-eye-test", requireAuth, authController.visual_eye_test_get);
 
 // POST Request
-router.post("/profile-user/:id", requireAuth, authController.profile_user_post);
-
+router.post(
+  "/profile-user/:id",
+  (req, res, next) => {
+    upload.single("profile")(req, res, next);
+  },
+  requireAuth,
+  authController.profile_user_post
+);
 module.exports = router;

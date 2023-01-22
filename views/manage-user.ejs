@@ -67,6 +67,7 @@
               <th>Status</th>
               <th>Last Sign In</th>
               <th>Manage User</th>
+              <th>Certificate</th>
             </tr>
           </thead>
 
@@ -79,6 +80,13 @@
               <th>Active</th>
               <th><% if (data.lastActive === today) { %> Today <% } else { %> <%- data.lastActive %> <% } %></th>
               <th><a href="/manage-user/<%- data._id %>" class="btn-manage-user">Manage User</a></th>
+              <% if (data.certificate) { %>
+              <th>
+                <a href="/show-certificate/<%- data._id %>">Show</a>
+              </th>
+              <% } else { %>
+              <th><a href="#" class="text-danger">None</a></th>
+              <% } %>
             </tr>
             <% } %>
           </tbody>

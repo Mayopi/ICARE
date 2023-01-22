@@ -2,6 +2,7 @@ require("dotenv").config();
 const User = require("../models/User");
 const Admin = require("../models/Admin");
 const Data = require("../models/Data");
+const { GoogleUser } = require("../models/GoogleUser");
 const jwt = require("jsonwebtoken");
 const { generateCertificateColorblind } = require("../middlewares/certificate");
 const { isMobilePhone } = require("validator");
@@ -9,6 +10,11 @@ const { isMobilePhone } = require("validator");
 // Handle errors function
 
 // middlewares
+
+const { googleLogin } = require("../middlewares/googleLogin");
+
+const { verifyJWTToken } = require("../middlewares/authMiddleware");
+
 const handleErrors = (err, username, password) => {
   let errors = { number: "", username: "", password: "", confirmPassword: "", admin: "" };
 
@@ -114,7 +120,11 @@ module.exports.certificate_get = async (req, res, next) => {
     if (err) console.log(err);
     return decodedToken;
   });
-  const user = await User.findById(result.id);
+  let user = await User.findById(result.id);
+
+  if (!user) {
+    user = await GoogleUser.findById(result.id);
+  }
 
   res.writeHead(200, {
     "Content-Type": "application/pdf",
@@ -122,9 +132,13 @@ module.exports.certificate_get = async (req, res, next) => {
   });
 
   const colorBlindResult = req.cookies.result;
-  generateCertificateColorblind(req, res, colorBlindResult);
+  generateCertificateColorblind(req, res, colorBlindResult, user);
 
   const certificateGenerated = await Data.find();
+
+  await user.updateOne({
+    certificate: true,
+  });
 
   if (certificateGenerated.length < 1) {
     await Data.create({
@@ -149,8 +163,20 @@ module.exports.visual_eye_test_get = async (req, res) => {
 
 // dashboard get
 
-module.exports.dashboard_get = (req, res) => {
-  res.render("dashboard");
+module.exports.dashboard_get = async (req, res, next) => {
+  const token = req.cookies.jwt;
+  const user = await verifyJWTToken(token);
+
+  let buffer = user?.profile?.Buffer ?? false;
+
+  if (buffer) {
+    buffer = user.profile.Buffer.toString("base64");
+  }
+
+  res.render("dashboard", {
+    user,
+    buffer,
+  });
 };
 
 module.exports.dashboard_admin_get = async (req, res) => {
@@ -217,19 +243,48 @@ module.exports.profile_user_get = async (req, res) => {
       return decodedToken;
     }
   });
-  const user = await User.findById(result.id);
+  const user = (await User.findById(result.id)) ?? (await GoogleUser.findById(req.params.id));
+
+  let buffer = user?.profile?.Buffer ?? false;
+
+  if (buffer) {
+    buffer = user.profile.Buffer.toString("base64");
+  }
+
   res.render("profile-user", {
     user,
     id: result.id,
+    buffer,
   });
 };
 
 module.exports.profile_user_settings_get = async (req, res) => {
-  const user = await User.findById(req.params.id);
+  const user = (await User.findById(req.params.id)) ?? (await GoogleUser.findById(req.params.id));
+
+  const buffer = user.profile.Buffer.toLocaleString("base64");
 
   res.render("user-settings", {
     user,
+    buffer,
   });
+};
+
+module.exports.show_certificate_get = async (req, res) => {
+  const userID = req.params.id;
+
+  let user = await User.findById(userID);
+
+  // if (!user) {
+  //   user = await GoogleUser.findById(result.id);
+  // }
+
+  res.writeHead(200, {
+    "Content-Type": "application/pdf",
+    "Content-Disposition": `inline;filename=ICARE-colorblindness-certificate-${user.username}.pdf`,
+  });
+
+  const colorBlindResult = req.cookies.result;
+  generateCertificateColorblind(req, res, colorBlindResult, user);
 };
 
 // routes post method
@@ -267,58 +322,73 @@ module.exports.signup_post = async (req, res) => {
 };
 
 module.exports.login_post = async (req, res) => {
-  const { number, password, confirmPassword } = req.body;
+  const { number, password, confirmPassword, credential } = req.body;
 
-  try {
-    const user = await User.login(number, password);
+  if (credential) {
+    try {
+      const user = await googleLogin(credential);
+      const token = createToken(user[0]._id);
 
-    lastSignIn(number);
+      res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
 
-    const token = createToken(user._id);
-    res.cookie("jwt", token, {
-      maxAge: maxAge * 1000,
-      httpOnly: true,
-    });
-    res.status(200).json({ user: user._id });
-  } catch (error) {
-    const errors = handleErrors(error, password, confirmPassword);
+      // res.status(200).json({ user });
+      res.redirect("/dashboard");
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error });
+    }
+  } else {
+    try {
+      const user = await User.login(number, password);
 
-    res.json({ errors });
+      lastSignIn(number);
+
+      const token = createToken(user._id);
+      res.cookie("jwt", token, {
+        maxAge: maxAge * 1000,
+        httpOnly: true,
+      });
+      res.status(200).json({ user: user._id });
+    } catch (error) {
+      const errors = handleErrors(error, password, confirmPassword);
+      res.json({ errors });
+    }
   }
 };
 
 module.exports.profile_user_post = async (req, res) => {
-  const { username, gender, number, bio } = req.body;
-  const userID = req.params.id;
-
-  const numberValidation = isMobilePhone(number, ["id-ID"]);
-
   try {
-    console.log(gender);
-    if (!numberValidation) {
-      throw new Error("Phone number are not valid!");
-    }
+    console.log(req.body);
+    const { username, gender, number, bio } = req.body;
+    const profile = req.file;
+    const userID = req.params.id;
 
-    if (gender != "Female" && gender != "Male" && gender != "None") {
-      throw new Error("Gender is not valid!");
-    }
+    const user = (await User.findOne({ _id: userID })) ?? (await GoogleUser.findOne({ _id: userID }));
 
-    if (bio.length > 160) {
-      throw new Error("Max bio length is 160 character");
-    }
-
-    const result = await User.updateOne(
-      { _id: userID },
-      {
+    if (!profile) {
+      await user.updateOne({
         username,
         gender,
         number,
         bio,
-      }
-    );
-
-    res.status(200).json(result);
+      });
+      res.status(200).json({ user: user._id });
+    } else {
+      await user.updateOne({
+        username,
+        gender,
+        number,
+        bio,
+        "profile.Buffer": profile.buffer,
+        "profile.name": profile.originalname,
+        "profile.type": profile.mimetype,
+        "profile.size": profile.size,
+        "profile.createdAt": new Date().toLocaleString(),
+      });
+      res.status(200).json({ user: user._id });
+    }
   } catch (error) {
+    console.log(error);
     const errors = profileUserHandler(error);
     res.status(400).json({ errors });
   }

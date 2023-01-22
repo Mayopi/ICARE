@@ -31,7 +31,13 @@
               <div class="dropdown">
                 <button class="profile-picture" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="profile-picture">
-                    <img src="img/user-profile.jpg" />
+                    <% if (buffer) { %>
+                    <img src="data:image/jpeg;base64, <%= buffer %>" alt="" />
+                    <% } else if(user.profile.path) {%>
+                    <img src="<%- user.profile.path %>" />
+                    <% } else { %>
+                    <img src="img/user-profile.png" alt="user-profile" />
+                    <% } %>
                   </div>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark">

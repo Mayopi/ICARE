@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
+
 const guestRoutes = require("./routes/guestRoutes");
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
@@ -11,12 +12,16 @@ const { generateRandomFunfact } = require("./utilities/functions");
 const User = require("./models/User");
 const Admin = require("./models/Admin");
 const Data = require("./models/Data");
+const { GoogleUser } = require("./models/GoogleUser");
+const { certificate, testTaken } = require("./utilities/data");
+
 // const multer = require("multer");
 
 const app = express();
 
 // middleware
 app.use(express.static("public"));
+app.use("/profile-user/:id", express.static("public"));
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -51,7 +56,7 @@ app.set("view engine", "ejs");
 // database connection
 
 mongoose
-  .connect(process.env.PRODUCTION_MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+  .connect(process.env.DEVELOPMENT_MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then((result) => {
     app.listen(3000, () => {
       const { name, host } = result.connections[0];
@@ -68,43 +73,16 @@ app.get("*", checkUser);
 app.get("/", async (req, res) => {
   try {
     const user = await User.find();
+    const googleUser = await GoogleUser.find();
     const data = await Data.find();
 
     if (data.length < 1) {
-      Data.create({ colorblindTest: 0, visualEyeTest: 0, amount: 0 });
+      Data.create({ colorblindTest: 0, visualEyeTest: 0, certificateGenerated: 0 });
     }
-
-    const certificate = (data) => {
-      data = String(data);
-      if (data > 999 && data < 1000000) {
-        return `${data[0]}K+`;
-      } else if (data > 999999 && data < 1000000000) {
-        return `${data[0]}M+`;
-      } else if (data > 999999999) {
-        return `${data[0]}B+`;
-      } else if (data > 999999999999 && data < 1000000000000) {
-        return `${data[0]}T+`;
-      }
-      return data;
-    };
-
-    const testTaken = (colorblind, visualeyes) => {
-      const data = String(colorblind + visualeyes);
-      if (data > 999 && data < 1000000) {
-        return `${data[0]}K+`;
-      } else if (data > 999999 && data < 1000000000) {
-        return `${data[0]}M+`;
-      } else if (data > 999999999) {
-        return `${data[0]}B+`;
-      } else if (data > 999999999999 && data < 1000000000000) {
-        return `${data[0]}T+`;
-      }
-      return data;
-    };
 
     res.render("index", {
       funfact: generateRandomFunfact(),
-      totalUser: user.length,
+      totalUser: user.length + googleUser.length,
       user,
       certificate: certificate(data[0].certificateGenerated.amount),
       testTaken: testTaken(data[0].colorblindTest.amount, data[0].visualEyeTest.amount),

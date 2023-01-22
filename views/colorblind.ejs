@@ -11,8 +11,7 @@
     <!-- css link -->
     <link rel="stylesheet" href="style/color-blind.css" />
 
-    <!-- Bootstrap Icon CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
+    <%- include("./layouts/assets.ejs") %>
   </head>
   <body>
     <%- include('./layouts/dashboardnav') %>
@@ -141,8 +140,8 @@
           <div class="row color-blind-result hidden">
             <div class="col-sm-12 colorblind-type">
               <h3 class="final-result"></h3>
-              <a href="/certificate-colorblindness">
-                <button class="btn btn-light">Download Result</button>
+              <a href="/certificate-colorblindness" target="_blank">
+                <button class="btn btn-primary">Download Result <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
               </a>
             </div>
           </div>

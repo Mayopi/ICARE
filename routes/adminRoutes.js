@@ -9,6 +9,7 @@ adminRouter.get("/dashboard-admin", requireAdmin, authController.dashboard_admin
 adminRouter.get("/manage-user", requireAdmin, authController.manage_user_get);
 adminRouter.get("/manage-user/:id", requireAdmin, authController.update_user_get);
 adminRouter.get("/delete-user/:id", requireAdmin, authController.delete_user_get);
+adminRouter.get("/show-certificate/:id", requireAdmin, authController.show_certificate_get);
 
 // post method routes
 adminRouter.post("/signup", authController.signup_post);

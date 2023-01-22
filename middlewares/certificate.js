@@ -2,25 +2,30 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const PDFDocument = require("pdfkit");
+const { GoogleUser } = require("../models/GoogleUser");
 
 // const { finalResult } = require("../public/javascript/color-blind");
 
 //Colorblind Certificate
 
 // Create Certificate PDF
-const generateCertificateColorblind = async (req, res, colorBlindResult) => {
+const generateCertificateColorblind = async (req, res, colorBlindResult, user) => {
   const doc = new PDFDocument({
     size: "A4",
     layout: "landscape",
   });
 
-  const token = req.cookies.jwt;
+  // const token = req.cookies.jwt;
 
-  const decodedToken = jwt.verify(token, process.env.JWT_SIGNATURE, (err, decodedToken) => {
-    return decodedToken;
-  });
+  // const decodedToken = jwt.verify(token, process.env.JWT_SIGNATURE, (err, decodedToken) => {
+  //   return decodedToken;
+  // });
 
-  const user = await User.findById(decodedToken.id);
+  // let user = await User.findById(decodedToken.id);
+
+  // if (!user) {
+  //   user = await GoogleUser.findById(decodedToken.id);
+  // }
 
   doc.pipe(res);
 

@@ -57,14 +57,37 @@ const userSchema = mongoose.Schema({
     ],
   },
 
-  image: {
-    type: String,
-    default: "",
+  profile: {
+    name: {
+      type: String,
+    },
+
+    Buffer: {
+      type: Buffer,
+    },
+
+    createdAt: {
+      type: String,
+      default: new Date(),
+    },
+
+    size: {
+      type: Number,
+    },
+
+    type: {
+      type: String,
+    },
   },
 
   lastActive: {
     type: String,
     required: false,
+  },
+
+  certificate: {
+    type: Boolean,
+    default: false,
   },
 
   created: {

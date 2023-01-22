@@ -69,6 +69,12 @@
         max-width: 400px;
       }
 
+      .profile {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+
       /* end of user setting form */
     </style>
 
@@ -82,7 +88,13 @@
       <div class="container card user-setting-form">
         <form>
           <div class="row header-setting">
-            <div class="img"></div>
+            <div class="img">
+              <% if (buffer) { %>
+              <img src="data:image/jpeg;base64, <%= buffer %>" alt="profile-user" class="profile" />
+              <% } else {%>
+              <img src="img/user-profile.png" class="profile" />
+              <% } %>
+            </div>
             <div class="caption">
               <h4>Update Your Profile</h4>
               <p>Edit input box below to update your profile</p>
